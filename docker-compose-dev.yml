@@ -1,0 +1,32 @@
+services:
+  api:
+    container_name: fastapi
+    build: .
+    depends_on:
+      - postgres_api
+    ports:
+      - 8009:8000
+    volumes:
+      - ./:/usr/src/app:ro
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - DATABASE_HOSTNAME=postgres_api
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=test.1234
+      - DATABASE_NAME=fastapi
+      - DATABASE_USERNAME=postgres
+      - SECRET_KEY=f03d476b8de3751b320b2cdd9ec6ce71d70cadebcde4fc73789e873829610d9f
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=60
+  postgres_api:
+    image: postgres
+    container_name: postgres-fastapi
+    ports:
+      - 5436:5432
+    environment:
+      - POSTGRES_PASSWORD=test.1234
+      - POSTGRES_DB=fastapi
+    volumes:
+      - postgres-db:/var/lib/postgresql/data}
+volumes:
+  postgres-db:
