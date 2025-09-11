@@ -9,22 +9,14 @@ jobs:
       name: testing
     # env for job1 ASD
     env:
-      # DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
-      # DATABASE_PORT: ${{secrets.DATABASE_PORT}}
-      # DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-      # DATABASE_NAME: ${{secrets.DATABASE_NAME}}
-      # DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-      # SECRET_KEY: ${{secrets.SECRET_KEY}}
-      # ALGORITHM: ${{secrets.ALGORITHM}}
-      # ACCESS_TOKEN_EXPIRE_MINUTES: 60
-      DATABASE_HOSTNAME: localhost
-      DATABASE_PORT: 5432
-      DATABASE_PASSWORD: test.1234
-      DATABASE_NAME: fastapi
-      TEST_DATABASE_NAME: fastapi_test
-      DATABASE_USERNAME: postgres
-      SECRET_KEY: f03d476b8de3751b320b2cdd9ec6ce71d70cadebcde4fc73789e873829610d9f
-      ALGORITHM: HS256
+      DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+      DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+      DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+      TEST_DATABASE_NAME: ${{secrets.TEST_DATABASE_NAME}}
+      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      ALGORITHM: ${{secrets.ALGORITHM}}
       ACCESS_TOKEN_EXPIRE_MINUTES: 60
     services:
       postgres:
@@ -49,4 +41,4 @@ jobs:
       - name: install all dependencies
         run: pip install -r requirements.txt
       - name: run pytest
-        run: pytest -v -x -s  --disable-warnings
+        run: pytest -v -x --disable-warnings
