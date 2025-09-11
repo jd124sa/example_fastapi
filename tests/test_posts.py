@@ -3,11 +3,16 @@
 # from app.config import settings
 import pytest
 from app import schemas
+from app.config import settings
+
+
+SQLACHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
+
+print("DSN = ", SQLACHEMY_DATABASE_URL)
 
 
 def test_get_all_posts(client, test_posts):
     res = client.get("/posts/")
-
     # def validate(post):
     #     return schemas.PostOut(post)
 

@@ -40,4 +40,4 @@ jobs:
       - name: install all dependencies
         run: pip install -r requirements.txt
       - name: run pytest
-        run: pytest -v -x  --disable-warnings
+        run: pytest -v -x -s  --disable-warnings
